@@ -1,9 +1,7 @@
 <script lang="ts">
-	interface task {
-		name: string;
-	}
+	import type { Tasks } from "src/gql/graphql";
 
-	export let task: task;
+	export let task: Tasks;
 </script>
 
-<div>{task.name}</div>
+<div>{task.name} door {task.person?.name}</div>

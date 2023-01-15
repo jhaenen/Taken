@@ -1,30 +1,17 @@
 import type { PageServerLoad } from './$types';
 import request from 'graphql-request'
-import { graphql } from '../gql/gql'
 import { CONSTANTS } from '../utils/constants';
+import { GetTasksDocument, type Tasks } from '../gql/graphql';
 
 export const load = (async () => {
-	const getTasksQueryDocument = graphql(`
-		query GetTasks {
-			tasks {
-				id
-				name
-				person {
-					name
-				}
-				room {
-					name
-				}
-			}
-		}
 
-	`)
+	const data = await request(CONSTANTS.HASURA_URL, GetTasksDocument)
 
-	const data = await request(CONSTANTS.HASURA_URL, getTasksQueryDocument)
+	let tasks = data.tasks as Tasks[];
 
 	return {
 		page: {
-			tasks: data.tasks
+			tasks: tasks
 		}
 	};
 }) satisfies PageServerLoad;

@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "\n\t\tquery GetTasks {\n\t\t\ttasks {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tperson {\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\troom {\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t": types.GetTasksDocument,
+    "query GetTasks {\n  tasks {\n    id\n    name\n    person {\n      name\n    }\n    room {\n      name\n    }\n  }\n}": types.GetTasksDocument,
 };
 
 /**
@@ -33,7 +33,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n\t\tquery GetTasks {\n\t\t\ttasks {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tperson {\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\troom {\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t"): (typeof documents)["\n\t\tquery GetTasks {\n\t\t\ttasks {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tperson {\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\troom {\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t"];
+export function graphql(source: "query GetTasks {\n  tasks {\n    id\n    name\n    person {\n      name\n    }\n    room {\n      name\n    }\n  }\n}"): (typeof documents)["query GetTasks {\n  tasks {\n    id\n    name\n    person {\n      name\n    }\n    room {\n      name\n    }\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

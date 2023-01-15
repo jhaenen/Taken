@@ -1,0 +1,12 @@
+query GetTasks {
+  tasks {
+    id
+    name
+    person {
+      name
+    }
+    room {
+      name
+    }
+  }
+}

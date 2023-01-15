@@ -1,6 +1,6 @@
 overwrite: true
 schema: "http://localhost:8080/v1/graphql"
-documents: "src/**/*.ts"
+documents: "src/**/*.graphql"
 generates:
   "src/gql/":
     preset: "client"
