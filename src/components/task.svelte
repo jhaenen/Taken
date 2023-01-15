@@ -4,4 +4,4 @@
 	export let task: Tasks;
 </script>
 
-<div>{task.name} door {task.person?.name}</div>
+<div class="text-3xl font-bold underline">{task.name} door {task.person?.name}</div>
