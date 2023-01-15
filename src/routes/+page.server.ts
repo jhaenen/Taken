@@ -1,26 +1,30 @@
 import type { PageServerLoad } from './$types';
-
-interface task {
-	name: string;
-}
+import request from 'graphql-request'
+import { graphql } from '../gql/gql'
+import { CONSTANTS } from '../utils/constants';
 
 export const load = (async () => {
-	// Perform post request to server
-	const response = await fetch('http://localhost:8080/v1/graphql', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({ query: '{ tasks { name } }' })
-	});
-	const resp = await response.json();
-	const tasks: task[] = resp.data.tasks;
+	const getTasksQueryDocument = graphql(`
+		query GetTasks {
+			tasks {
+				id
+				name
+				person {
+					name
+				}
+				room {
+					name
+				}
+			}
+		}
 
-	console.log(tasks);
+	`)
+
+	const data = await request(CONSTANTS.HASURA_URL, getTasksQueryDocument)
 
 	return {
 		page: {
-			tasks: tasks
+			tasks: data.tasks
 		}
 	};
 }) satisfies PageServerLoad;
